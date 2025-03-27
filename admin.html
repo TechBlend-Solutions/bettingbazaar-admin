@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Betting Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-dashboard-body">
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#overview" class="nav-link active">
+                    <span class="nav-icon">📊</span> Dashboard
+                </a>
+                <a href="#banner" class="nav-link">
+                    <span class="nav-icon">🎨</span> Banner Content
+                </a>
+                <a href="#categories" class="nav-link">
+                    <span class="nav-icon">🏀</span> Categories
+                </a>
+                <a href="#users" class="nav-link">
+                    <span class="nav-icon">👥</span> Users
+                </a>
+                <a href="admin-login.html" class="nav-link logout-btn">
+                    <span class="nav-icon">🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Dashboard Overview -->
+            <section id="overview" class="admin-section">
+                <h2>Dashboard Overview</h2>
+                <div class="overview-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">👤</div>
+                        <h3>Total Users</h3>
+                        <p>150</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎰</div>
+                        <h3>Bets Placed Today</h3>
+                        <p>45</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Manage Banner Content -->
+            <section id="banner" class="admin-section">
+                <h2>Manage Banner Content</h2>
+                <form id="banner-form" class="admin-form">
+                    <div class="form-group">
+                        <label for="banner-title">Banner Title</label>
+                        <input type="text" id="banner-title" value="IPL 2025 BETTING BONANZA" placeholder="Enter banner title">
+                    </div>
+                    <div class="form-group">
+                        <label for="banner-subtitle">Banner Subtitle</label>
+                        <input type="text" id="banner-subtitle" value="Get 50% Cashback on Your First IPL Bet!" placeholder="Enter banner subtitle">
+                    </div>
+                    <div class="form-group">
+                        <label for="banner-image">Upload New Background Image</label>
+                        <input type="file" id="banner-image" accept="image/*">
+                    </div>
+                    <button type="submit" class="admin-btn">Update Banner</button>
+                </form>
+            </section>
+
+            <!-- Manage Categories -->
+            <section id="categories" class="admin-section">
+                <h2>Manage Categories</h2>
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Placeholder Image</th>
+                                <th>Visible</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cricket</td>
+                                <td><input type="file" accept="image/*"></td>
+                                <td><input type="checkbox" checked></td>
+                                <td><button class="admin-btn save-btn">Save</button></td>
+                            </tr>
+                            <tr>
+                                <td>Football</td>
+                                <td><input type="file" accept="image/*"></td>
+                                <td><input type="checkbox" checked></td>
+                                <td><button class="admin-btn save-btn">Save</button></td>
+                            </tr>
+                            <tr>
+                                <td>Casino</td>
+                                <td><input type="file" accept="image/*"></td>
+                                <td><input type="checkbox" checked></td>
+                                <td><button class="admin-btn save-btn">Save</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- User Management -->
+            <section id="users" class="admin-section">
+                <h2>User Management</h2>
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Bets Placed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>user1</td>
+                                <td>user1@example.com</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>user2</td>
+                                <td>user2@example.com</td>
+                                <td>5</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Simulate banner update (for demo purposes)
+        document.getElementById('banner-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Banner updated successfully! (Demo mode - changes not saved)');
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('.admin-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = e.clientX - rect.left - size / 2 + 'px';
+                ripple.style.top = e.clientY - rect.top - size / 2 + 'px';
+                this.appendChild(ripple);
+                ripple.addEventListener('animationend', () => ripple.remove());
+            });
+        });
+
+        // Sidebar navigation active state
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
